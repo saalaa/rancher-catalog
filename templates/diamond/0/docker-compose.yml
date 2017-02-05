@@ -14,8 +14,6 @@ services:
   web:
     image: saalaa/diamond:latest
     command: ['web']
-    ports:
-      - 8080:8080
     links:
       - postgresql
       - redis
