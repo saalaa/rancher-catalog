@@ -1,0 +1,64 @@
+version: '2'
+
+catalog:
+  name: Diamond wiki
+  version: current
+  description: Current version of Diamond wiki
+  minimum_rancher_version: 1.2.0
+  questions:
+    - variable: secret_key
+      label: "Secret key"
+      description: |
+        Secret key for encrypting and signing things.
+      type: "string"
+      required: true
+
+    - variable: "mail_server"
+      label: "Mail server"
+      description: |
+        Mail server IP address or domain name
+      type: "string"
+      required: true
+      default: "smtp.gmail.com"
+
+    - variable: "mail_port"
+      label: "Mail server port"
+      description: |
+        Mail server port number
+      type: "int"
+      required: true
+
+    - variable: "mail_username"
+      label: "Mail server username"
+      description: |
+        Mail server username; often an email address
+      type: "string"
+      required: true
+
+    - variable: "mail_password"
+      label: "Mail server password"
+      description: |
+        Mail server password
+      type: "string"
+      required: true
+
+    - variable: "mail_use_tls"
+      label: "Mail server supports TLS"
+      description: |
+        Whether or not the mail server supports TLS
+      type: "bool"
+      required: true
+
+    - variable: "mail_use_ssl"
+      label: "Mail server supports SSL"
+      description: |
+        Whether or not the mail server supports SSL
+      type: "bool"
+      required: true
+
+    - variable: "mail_default_sender"
+      label: "Default email sender"
+      description: |
+        Default email sender
+      type: "string"
+      required: true

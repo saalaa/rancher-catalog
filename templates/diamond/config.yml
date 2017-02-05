@@ -1,0 +1,8 @@
+name: Diamond Wiki
+description: |
+  Diamond wiki, the metadata enabled wiki engine
+version: 0
+category: Personal wiki
+maintainer: Benoit Myard <myardbenoit@gmail.com>
+license: GPL
+projectURL: https://github.com/saalaa/diamond

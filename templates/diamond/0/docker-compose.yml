@@ -1,0 +1,50 @@
+version: '2'
+
+services:
+  postgresql:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: diamond
+      POSTGRES_USER: diamond
+      POSTGRES_DB: diamond
+
+  redis:
+    image: redis
+
+  web:
+    image: saalaa/diamond:latest
+    command: ['web']
+    ports:
+      - 8080:8080
+    links:
+      - postgresql
+      - redis
+    environment:
+      DATABASE_URL: postgres://diamond:diamond@postgresql/diamond
+      REDIS_URL: redis://redis/0
+      SECRET_KEY: ${secret_key}
+      MAIL_SERVER: ${mail_server}
+      MAIL_PORT: ${mail_port}
+      MAIL_USERNAME: ${mail_username}
+      MAIL_PASSWORD: ${mail_password}
+      MAIL_USE_TLS: ${mail_use_tls}
+      MAIL_USE_SSL: ${mail_use_ssl}
+      MAIL_DEFAULT_SENDER: ${mail_default_sender}
+
+  worker:
+    image: saalaa/diamond:latest
+    command: ['worker']
+    links:
+      - postgresql
+      - redis
+    environment:
+      DATABASE_URL: postgres://diamond:diamond@postgresql/diamond
+      REDIS_URL: redis://redis/0
+      SECRET_KEY: ${secret_key}
+      MAIL_SERVER: ${mail_server}
+      MAIL_PORT: ${mail_port}
+      MAIL_USERNAME: ${mail_username}
+      MAIL_PASSWORD: ${mail_password}
+      MAIL_USE_TLS: ${mail_use_tls}
+      MAIL_USE_SSL: ${mail_use_ssl}
+      MAIL_DEFAULT_SENDER: ${mail_default_sender}
